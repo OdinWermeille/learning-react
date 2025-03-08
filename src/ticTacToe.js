@@ -15,7 +15,7 @@ function Board({ currentMove, squares, onPlay }) {
   }
 
   const winner = calculateWinner(squares);
-  let status = winner ? 'Winner : ' + winner : 'Next player: ' + (currentMove%2 ? 'X' : 'O');
+  let status = winner ? 'Winner : ' + winner : 'Next player: ' + (currentMove%2 ? 'O' : 'X');
 
   return <>
     <div className="status">{status}</div>
