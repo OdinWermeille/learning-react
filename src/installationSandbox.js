@@ -35,11 +35,13 @@ function AverageResult({faces, numberOfDice}) {
 
 function AverageMinResult({faces, numberOfDice}) {
   if (numberOfDice <= 0 || faces <= 0 || isNaN(numberOfDice) || isNaN(faces)) return <p>Please enter only numbers above 0</p>
+  faces = parseInt(faces);
+  numberOfDice = parseInt(numberOfDice);
   let sum = 0;
   for (let i = 1; i <= faces; i++) {
-    sum += i**numberOfDice;
+    sum += i*((((faces+1-i)/(faces)))**(numberOfDice)-(((faces-i)/(faces)))**(numberOfDice)) ;
   }
-  const average = sum / faces**numberOfDice;
+  const average = sum;
   return <p>Average result of lowest dice : {average}</p>
 }
 
