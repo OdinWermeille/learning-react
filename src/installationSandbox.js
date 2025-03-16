@@ -45,11 +45,13 @@ function AverageMinResult({faces, numberOfDice}) {
 
 function AverageMaxResult({faces, numberOfDice}) {
   if (numberOfDice <= 0 || faces <= 0 || isNaN(numberOfDice) || isNaN(faces)) return <p>Please enter only numbers above 0</p>
+  faces = parseInt(faces);
+  numberOfDice = parseInt(numberOfDice);
   let sum = 0;
-  for (let i = 1; i <= faces**numberOfDice; i++) {
-    sum += Math.ceil(i**(1/numberOfDice));
+  for (let i = 1; i <= faces; i++) {
+    sum += i*((i/faces)**numberOfDice - ((i-1)/faces)**numberOfDice);
   }
-  const average = sum / faces**numberOfDice
+  const average = sum
   return <p>Average result of highest dice : {average}</p>
 }
 
@@ -58,7 +60,6 @@ function AverageDiceResult() {
   const [numberOfDice, setNumberOfDice] = useState(1);
   const [minActive, setMinActive] = useState(false);
   const [maxActive, setMaxActive] = useState(false);
-  console.log(faces)
 
   return <>
     <label>
@@ -77,7 +78,7 @@ function AverageDiceResult() {
     </label>
     {minActive && <AverageMinResult faces={faces} numberOfDice={numberOfDice} />}
     <label>
-      Activate max (may take a while and/or crash for number of dice >= 7)
+      Activate max
       {' '}
       <input type="checkbox" checked={maxActive} onChange={(e) => setMaxActive(e.target.checked)} />
     </label>
