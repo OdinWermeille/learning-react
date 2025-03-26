@@ -37,6 +37,7 @@ function AverageMinResult({faces, numberOfDice}) {
   if (numberOfDice <= 0 || faces <= 0 || isNaN(numberOfDice) || isNaN(faces)) return <p>Please enter only numbers above 0</p>
   faces = parseInt(faces);
   numberOfDice = parseInt(numberOfDice);
+  if (numberOfDice === 1) return <p>Average result of lowest dice : {(faces+1)/2}</p>
   let sum = 0;
   for (let i = 1; i <= faces; i++) {
     sum += i*((((faces+1-i)/(faces)))**(numberOfDice)-(((faces-i)/(faces)))**(numberOfDice)) ;
@@ -49,6 +50,7 @@ function AverageMaxResult({faces, numberOfDice}) {
   if (numberOfDice <= 0 || faces <= 0 || isNaN(numberOfDice) || isNaN(faces)) return <p>Please enter only numbers above 0</p>
   faces = parseInt(faces);
   numberOfDice = parseInt(numberOfDice);
+  if (numberOfDice === 1) return <p>Average result of highest dice : {(faces+1)/2}</p>
   let sum = 0;
   for (let i = 1; i <= faces; i++) {
     sum += i*((i/faces)**numberOfDice - ((i-1)/faces)**numberOfDice);
